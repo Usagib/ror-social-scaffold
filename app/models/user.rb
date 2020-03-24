@@ -10,11 +10,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  has_many :friendships
-  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'rqstuser_id'
+  has_many :friendships, dependent: :delete_all
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'rqstuser_id', dependent: :delete_all
 
   # Methods
 
+  # Return the user's friends list
   def friends
     friends_arr = friendships.map do |fr|
       fr.rqstuser if fr.status
@@ -24,9 +25,10 @@ class User < ApplicationRecord
       fr.user if fr.status
     end
 
-    friends_arr.compact
+    friends_arr
   end
 
+  # shows users which the current users had send friend requests
   def pending_friends
     friendships.map { |fr| fr.rqstuser unless fr.status }.compact
   end
@@ -36,13 +38,20 @@ class User < ApplicationRecord
     inverse_friendships.map { |fr| fr.user unless fr.status }.compact
   end
 
+  # Confirmation methods for request receiving user
   def confirm_friend(user)
-    friendship = friendships.find { |fr| fr.rqstuser_id == user.id }
+    friendship = inverse_friendships.find { |fr| fr.user == user }
     friendship.status = true
     friendship.save
   end
 
+  # Checks for friendship
   def friend?(user)
     friends.include?(user)
+  end
+
+  # Eliminates friendship
+  def unfriend(user)
+    Friendship.delete(Friendship.where(:user_id.eql?(self.id) && :rqstuser_id.eql?(user.id)))
   end
 end
