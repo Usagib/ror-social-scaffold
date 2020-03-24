@@ -52,6 +52,6 @@ class User < ApplicationRecord
 
   # Eliminates friendship
   def unfriend(user)
-    Friendship.delete(Friendship.where(:user_id.eql?(self.id) && :rqstuser_id.eql?(user.id)))
+    Friendship.delete(Friendship.where(:user_id.eql?(id) && :rqstuser_id.eql?(user.id)))
   end
 end
