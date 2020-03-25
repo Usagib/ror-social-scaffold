@@ -21,7 +21,7 @@ class User < ApplicationRecord
       fr.rqstuser if fr.status
     end
 
-    friends_arr << inverse_friendships.map do |fr|
+    friends_arr += inverse_friendships.map do |fr|
       fr.user if fr.status
     end
 
