@@ -50,6 +50,11 @@ class User < ApplicationRecord
     friendship.save
   end
 
+  def decline_friend(sender)
+    friendship = inverse_friendships.find { |fr| fr.sender == sender }
+    friendship.destroy
+  end
+
   # Checks for friendship
   def friend?(user)
     friends.include?(user)

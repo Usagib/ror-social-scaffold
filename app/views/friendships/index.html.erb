@@ -1,17 +1,9 @@
 <section class="users-section">
-  <h1>friends</h1>
+  <h1>Friend Requests</h1>
   <ul class="users-list">
-    <% @friendships.each do |friendship| %>
+    <% @friend_requests.each do |friendship| %>
       <li>
-        <%= friendship.rqstuser.name if friendship.status %>
-      </li>
-    <% end %>
-  </ul>
-  <h1>pending friends</h1>
-  <ul class="users-list">
-    <% @friendships.each do |friendship| %>
-      <li>
-        <%= friendship.rqstuser.name if !friendship.status %>
+        <%= "#{ friendship.rqstuser.name} wants to connect with you" if !friendship.status %>
       </li>
     <% end %>
   </ul>

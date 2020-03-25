@@ -44,11 +44,11 @@ group :development, :test do
 end
 
 group :test do
-  gem 'test-unit'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
   gem 'shoulda'
   gem 'shoulda-matchers'
-  gem 'rails-controller-testing'
+  gem 'test-unit'
   # Add support for rails Rspec
   gem 'rspec-rails'
   # Adds support for Capybara system testing and selenium driver
