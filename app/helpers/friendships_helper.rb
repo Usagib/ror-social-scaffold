@@ -1,9 +1,11 @@
 module FriendshipsHelper
   def friend_btn_show
     @viewed_user = User.find(params[:id])
-    if !current_user.pending_friend?(@viewed_user)
+    if current_user.friend_requests.include?(@viewed_user)
+      link_to "Confirm Friend Request", friendships_path
+    elsif !current_user.pending_friend?(@viewed_user) && !current_user.eql?(@viewed_user)
       friend_unfriend_btn
-    else
+    elsif !current_user.eql?(@viewed_user)
       link_to('Friend request waiting for acceptance', user_path(current_user))
     end
   end
@@ -18,10 +20,16 @@ module FriendshipsHelper
   end
 
   def confirm_btn
-      @requestuser = User.find_by(params[:rqstuser])
-      @friendship = current_user.friendships.where(rqstuser_id: @requestuser, user_id: current_user)
+    @requestuser = User.find_by(params[:rqstuser])
+
       link_to('Confirm Friendship', confirm_path(user_id: current_user, rqstuser: @requestuser), method: :post)
-      #link_to('Decline Frienship', user_friendship_path(id: @friendship, user_id: current_user, rqstuser: @requestuser), method: :delete)
+  end
+
+  def decline_btn
+    @requestuser = User.find_by(params[:rqstuser])
+    @friendship = current_user.friendships.where(rqstuser_id: @requestuser, user_id: current_user)
+
+      link_to('Decline Frienship', user_friendship_path(id: @friendship, user_id: current_user, rqstuser: @requestuser), method: :delete)
   end
 
 

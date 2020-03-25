@@ -4,7 +4,12 @@
     <% @friend_requests.each do |friendship| %>
       <li>
         <%= "#{ friendship.user.name} wants to connect with you" if !friendship.status %>
+        <br>
+        <br>
         <%= confirm_btn %>
+        <br>
+        <br>
+        <%= decline_btn %>
       </li>
     <% end %>
   </ul>
