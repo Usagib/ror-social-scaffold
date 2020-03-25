@@ -3,15 +3,15 @@
   <ul class="users-list">
     <% @friendships.each do |friendship| %>
       <li>
-        Name: <%= friendship.rqstuser.name %>
+        <%= friendship.rqstuser.name if friendship.status %>
       </li>
     <% end %>
   </ul>
   <h1>pending friends</h1>
   <ul class="users-list">
-    <% @inverse_friendships.each do |friendship| %>
+    <% @friendships.each do |friendship| %>
       <li>
-        Name: <%= friendship.user.name %>
+        <%= friendship.rqstuser.name if !friendship.status %>
       </li>
     <% end %>
   </ul>
