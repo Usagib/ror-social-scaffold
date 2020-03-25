@@ -33,6 +33,11 @@ class User < ApplicationRecord
     friendships.map { |fr| fr.rqstuser unless fr.status }.compact
   end
 
+  # shows if a user has a pending friend
+  def pending_friend?(user)
+    pending_friends.include?(user)
+  end
+
   # Users who have requested to be friends
   def friend_requests
     inverse_friendships.map { |fr| fr.user unless fr.status }.compact
