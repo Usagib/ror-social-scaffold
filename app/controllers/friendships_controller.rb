@@ -16,6 +16,7 @@ class FriendshipsController < ApplicationController
   def confirm
     @friend = User.find(params[:rqstuser])
     current_user.confirm_friend(@friend)
+    redirect_to friendships_path, notice: 'Now you are friends'
   end
 
   def destroy

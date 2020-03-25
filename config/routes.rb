@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'posts#index'
   get '/friendships', to: 'friendships#index'
-  post '/confirm/:id', to: 'friendships#confirm'
+  post '/friendships', to: 'friendships#confirm', as: 'confirm'
 
   devise_for :users
 
