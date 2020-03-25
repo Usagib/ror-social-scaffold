@@ -18,9 +18,10 @@ module FriendshipsHelper
   end
 
   def confirm_btn
-      link_to('Confirm Friendship', user_friendship_path(user: current_user, rqstuser: @viewed_user), method: :delete)
-      link_to('Decline Frienship', user_friendship_path(user_id: current_user,
-                                                           rqstuser: @viewed_user), method: :destroy)
+      @requestuser = User.find_by(params[:rqstuser])
+      @friendship = current_user.friendships.where(rqstuser_id: @requestuser, user_id: current_user)
+      link_to('Confirm Friendship', confirm_path(user: current_user, rqstuser: @requestuser), method: :post)
+      #link_to('Decline Frienship', user_friendship_path(id: @friendship, user_id: current_user, rqstuser: @requestuser), method: :delete)
   end
 
 

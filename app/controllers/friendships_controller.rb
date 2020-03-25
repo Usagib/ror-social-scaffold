@@ -13,8 +13,9 @@ class FriendshipsController < ApplicationController
     @friend_requests = current_user.inverse_friendships
   end
 
-  def confirm_friendship
-
+  def confirm
+    @friend = User.find(params[:rqstuser])
+    current_user.confirm_friend(@friend)
   end
 
   def destroy
