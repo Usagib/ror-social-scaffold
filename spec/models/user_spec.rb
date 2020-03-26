@@ -29,11 +29,10 @@ RSpec.describe User, type: :model do
       expect(@testuser2.friends.find(@testuser1)).to be_truthy
     end
 
-    it 'user gets unfriended' do
+    it 'friend request gets rejected' do
       @testuser1.friendships.build(rqstuser: @testuser2).save
-      @testuser2.confirm_friend(@testuser1)
-      @testuser1.unfriend(@testuser2)
-      expect(@testuser1.friend?(@testuser2)).to be(false)
+      @testuser2.decline_friend(@testuser1)
+      expect(@testuser2.friend?(@testuser1)).to be_falsey
     end
   end
 
