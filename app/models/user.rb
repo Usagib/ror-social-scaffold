@@ -60,11 +60,6 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  # Eliminates friendship
-  def unfriend(user)
-    Friendship.delete(Friendship.where(:user_id.eql?(id) && :rqstuser_id.eql?(user.id)))
-  end
-
   def user_timeline
     Post.where(user: [self] + friends)
   end

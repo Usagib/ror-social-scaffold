@@ -3,13 +3,15 @@
   <ul class="users-list">
     <% @friend_requests.each do |friendship| %>
       <li>
-        <%= "#{ friendship.user.name} wants to connect with you" if !friendship.status %>
+      <% unless friendship.status  %>
+        <h1 class='usertitle'><%= "#{ friendship.user.name} wants to connect with you" %></h1>
         <br>
         <br>
-        <%= confirm_btn %>
+        <%= confirm_btn friendship %>
         <br>
         <br>
-        <%= decline_btn %>
+        <%= decline_btn friendship %>
+      <% end %>
       </li>
     <% end %>
   </ul>

@@ -245,6 +245,9 @@ form {
   }
 
   .post-liking {
+    display: flex;
+    justify-content: space-around;
+
     float: right;
 
     a{

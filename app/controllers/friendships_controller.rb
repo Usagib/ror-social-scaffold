@@ -1,10 +1,10 @@
 class FriendshipsController < ApplicationController
   def create
-    @rqstuser = User.find(params[:rqstuser])
+    @rqstuser = User.find(params[:rqstuser_id])
     if current_user.friendships.build(rqstuser_id: @rqstuser.id).save
       redirect_to user_path(@rqstuser), notice: 'Friend request sent'
     else
-      redirect_to current_user, notice: 'Friend Request NOT SENT'
+      redirect_to current_user, alert: 'Friend Request NOT SENT'
     end
   end
 
@@ -14,18 +14,16 @@ class FriendshipsController < ApplicationController
   end
 
   def confirm
-    @friend = User.find(params[:rqstuser])
-    current_user.confirm_friend(@friend)
-    redirect_to friendships_path, notice: 'Now you are friends'
+    Friendship.confirm_friend(params[:id])
+    redirect_back(fallback_location: root_path, notice: 'Now you are friends')
   end
 
   def destroy
-    @rqstuser = User.find(params[:id])
-    if current_user.friend?(@rqstuser)
-      current_user.unfriend(@rqstuser)
-      redirect_to @rqstuser, notice: 'You are NOT friends anymore'
+    if params[:id].nil?
+      Friendship.destroy_friendship(params[:user_id], params[:rqstuser_id])
     else
-      redirect_to @rqstuser, notice: 'Uncaught operation --> contact backend support'
+      Friendship.destroy_request(params[:id])
     end
+    redirect_back(fallback_location: root_path, alert: 'Friend request declined or Frienship finished')
   end
 end
