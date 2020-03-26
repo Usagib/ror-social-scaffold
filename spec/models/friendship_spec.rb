@@ -32,5 +32,27 @@ RSpec.describe Friendship, type: :model do
       Friendship.confirm_friend(f.id)
       expect(f.reload.status).to be(true)
     end
+
+    it 'should have composite primary key' do
+      friend1.friendships.build(rqstuser_id: friend2.id).save
+      f = friend1.friendships.where(user_id: friend1.id,
+                                    rqstuser_id: friend2.id).first
+      Friendship.confirm_friend(f.id)
+      expect(f.id).to eq([10, 11])
+    end
+
+    it 'shoul not be valid witn wrong arguments' do
+      friendship = Friendship.create(user_id: '', rqstuser_id: friend2.id)
+
+      expect(friendship.valid?).to be(false)
+
+      friendship = Friendship.create(user_id: friend1.id, rqstuser_id: '')
+
+      expect(friendship.valid?).to be(false)
+
+      friendship = Friendship.create(user_id: '', rqstuser_id: '')
+
+      expect(friendship.valid?).to be(false)
+    end
   end
 end
