@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop: disable Metrics/BlockLength
 RSpec.feature 'Users', type: :feature do
   before(:each) do
     @testuser1 = User.create(name: 'User_sending', email: 'sender@user.com', password: '123456')
@@ -55,3 +56,5 @@ RSpec.feature 'Users', type: :feature do
     end
   end
 end
+
+# rubocop: enable Metrics/BlockLength
