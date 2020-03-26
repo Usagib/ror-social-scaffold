@@ -1,0 +1,18 @@
+<section class="users-section">
+  <h1>Friend Requests</h1>
+  <ul class="users-list">
+    <% @friend_requests.each do |friendship| %>
+      <li>
+      <% unless friendship.status  %>
+        <h1 class='usertitle'><%= "#{ friendship.user.name} wants to connect with you" %></h1>
+        <br>
+        <br>
+        <%= confirm_btn friendship %>
+        <br>
+        <br>
+        <%= decline_btn friendship %>
+      <% end %>
+      </li>
+    <% end %>
+  </ul>
+</section>
