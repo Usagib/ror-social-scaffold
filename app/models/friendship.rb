@@ -16,7 +16,7 @@ class Friendship < ApplicationRecord
     end
 
     def destroy_friendship(user, rqstuser)
-      frienship = Friendship.where(user_id: user, rqstuser_id: rqstuser).first
+      friendship = Friendship.where(user_id: user, rqstuser_id: rqstuser).first
       inverse_friendship = Friendship.where(user_id: rqstuser, rqstuser_id: user).first
       friendship&.delete
       inverse_friendship&.delete
