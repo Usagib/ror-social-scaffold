@@ -1,9 +1,7 @@
 class Friendship < ApplicationRecord
-  belongs_to :user
+  self.primary_keys = :user_id, :rqstuser_id
+  belongs_to :user, foreign_key: :user_id, class_name: 'User'
   belongs_to :rqstuser, foreign_key: :rqstuser_id, class_name: 'User'
-
-  validates :user_id, presence: true
-  validates :rqstuser_id, presence: true
 
   # Confirmation and deletion methods for processing requests
   class << self

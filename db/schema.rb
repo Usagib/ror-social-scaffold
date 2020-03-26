@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 2020_03_24_160524) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "friendships", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "rqstuser_id"
+  create_table "friendships", primary_key: ["user_id", "rqstuser_id"], force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "rqstuser_id", null: false
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

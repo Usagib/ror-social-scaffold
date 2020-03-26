@@ -1,6 +1,6 @@
 class CreateFriendships < ActiveRecord::Migration[5.2]
   def change
-    create_table :friendships do |t|
+    create_table(:friendships, primary_key: [:user_id, :rqstuser_id]) do |t|
       t.references :user, foreign_key: true, index: true
       t.references :rqstuser, index: true
       t.boolean :status
