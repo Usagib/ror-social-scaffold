@@ -1,4 +1,6 @@
 class Friendship < ApplicationRecord
+  validate :unique_friendship
+
   self.primary_keys = :user_id, :rqstuser_id
   belongs_to :user, foreign_key: :user_id, class_name: 'User'
   belongs_to :rqstuser, foreign_key: :rqstuser_id, class_name: 'User'
@@ -19,5 +21,12 @@ class Friendship < ApplicationRecord
       friendship&.delete
       inverse_friendship&.delete
     end
+  end
+
+  def unique_friendship
+    return if Friendship.where(user_id: rqstuser_id, rqstuser_id: user_id).empty?
+
+    errors[:attribute] << 'Existing friendship'
+    false
   end
 end
