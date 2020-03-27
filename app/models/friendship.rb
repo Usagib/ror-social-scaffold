@@ -8,7 +8,9 @@ class Friendship < ApplicationRecord
   # Confirmation and deletion methods for processing requests
   class << self
     def confirm_friend(fr_id)
+      Friendship.second_row(fr_id)
       Friendship.find(fr_id).update(status: true)
+      Friendship.find(fr_id.reverse).update(status: true)
     end
 
     def destroy_request(fr_id)
@@ -16,10 +18,21 @@ class Friendship < ApplicationRecord
     end
 
     def destroy_friendship(user, rqstuser)
-      friendship = Friendship.where(user_id: user, rqstuser_id: rqstuser).first
-      inverse_friendship = Friendship.where(user_id: rqstuser, rqstuser_id: user).first
+      friendship = Friendship.where(user_id: user, rqstuser_id: rqstuser).take
+      inverse_friendship = Friendship.where(user_id: rqstuser, rqstuser_id: user).take
       friendship&.delete
       inverse_friendship&.delete
+    end
+
+    def friendship_exists?(user_id, rqstuser_id)
+      Friendship.where(user_id: user_id, rqstuser_id: rqstuser_id).exists?
+    end
+
+    def second_row(fr_id)
+      frd = Friendship.find(fr_id)
+      return if Friendship.friendship_exists?(frd.rqstuser_id, frd.user_id)
+
+      Friendship.create(user_id: frd.rqstuser_id, rqstuser_id: frd.user_id)
     end
   end
 
