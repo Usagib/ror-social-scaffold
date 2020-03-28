@@ -14,15 +14,17 @@ class FriendshipsController < ApplicationController
   end
 
   def confirm
-    Friendship.confirm_friend(params[:id])
+    friendship = Friendship.find(params[:id])
+    friendship.confirm_friend
     redirect_back(fallback_location: root_path, notice: 'Now you are friends')
   end
 
   def destroy
-    if params[:id].nil?
-      Friendship.destroy_friendship(params[:user_id], params[:rqstuser_id])
+    if params[:id]
+      Friendship.find(params[:id]).destroy
     else
-      Friendship.destroy_request(params[:id])
+      friendship = Friendship.find_by(user_id: params[:user_id], rqstuser_id: params[:rqstuser_id])
+      friendship.destroy_friendship
     end
     redirect_back(fallback_location: root_path, alert: 'Friend request declined or Frienship finished')
   end
