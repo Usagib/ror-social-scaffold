@@ -14,13 +14,12 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'rqstuser_id', dependent: :delete_all
 
   has_many :friends, -> { where(friendships: { status: true }) }, through: :friendships, source: :rqstuser
-  has_many :pending_friends, -> { where(friendships: { status: nil }) }, through: :friendships, source: :rqstuser
-
+  scope :all_but, ->(user) { where.not(id: user) }
   # Methods
 
   # shows if a user has a pending friend
   def pending_friend?(user)
-    pending_friends.include?(user)
+    friend_requests.include?(user)
   end
 
   # Users who have requested to be friends

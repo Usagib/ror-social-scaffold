@@ -39,7 +39,7 @@ RSpec.describe 'Friendship feature', type: :feature do
       click_button 'Log in'
 
       click_link 'All users'
-      page.all(:link, 'See Profile')[0].click
+      click_link 'My profile'
       expect(page).not_to have_content('Send friend request')
     end
 
@@ -53,7 +53,7 @@ RSpec.describe 'Friendship feature', type: :feature do
       click_button 'Log in'
 
       click_link 'All users'
-      page.all(:link, 'See Profile')[1].click
+      first(:link, 'See Profile').click
       expect(page).to have_content('Send friend request')
     end
 
@@ -67,7 +67,7 @@ RSpec.describe 'Friendship feature', type: :feature do
       click_button 'Log in'
 
       click_link 'All users'
-      page.all(:link, 'See Profile')[1].click
+      first(:link, 'See Profile').click
       first(:link, 'Send friend request').click
       expect(page).to have_content('Friend request waiting for acceptance. Decline request')
     end
@@ -82,7 +82,7 @@ RSpec.describe 'Friendship feature', type: :feature do
       click_button 'Log in'
 
       click_link 'All users'
-      page.all(:link, 'See Profile')[1].click
+      first(:link, 'See Profile').click
       first(:link, 'Send friend request').click
       first(:link, 'Friend request waiting for acceptance. Decline request').click
       expect(page).to have_content('Friend request declined or Frienship finished')
@@ -98,7 +98,7 @@ RSpec.describe 'Friendship feature', type: :feature do
       click_button 'Log in'
 
       click_link 'All users'
-      page.all(:link, 'See Profile')[1].click
+      first(:link, 'See Profile').click
       first(:link, 'Send friend request').click
 
       expect(page).to have_content('Friend request waiting for acceptance. Decline request')
@@ -128,7 +128,7 @@ RSpec.describe 'Friendship feature', type: :feature do
       click_button 'Log in'
 
       click_link 'All users'
-      page.all(:link, 'See Profile')[1].click
+      first(:link, 'See Profile').click
       first(:link, 'Send friend request').click
 
       expect(page).to have_content('Friend request waiting for acceptance. Decline request')
@@ -158,7 +158,7 @@ RSpec.describe 'Friendship feature', type: :feature do
       click_button 'Log in'
 
       click_link 'All users'
-      page.all(:link, 'See Profile')[1].click
+      first(:link, 'See Profile').click
       first(:link, 'Send friend request').click
 
       expect(page).to have_content('Friend request waiting for acceptance. Decline request')

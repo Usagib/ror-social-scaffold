@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   def create
-    @rqstuser = User.find(params[:rqstuser_id])
+    @rqstuser = User.find(params[:rqstuser_id] ||= params[:index_id])
     if current_user.friendships.build(rqstuser_id: @rqstuser.id).save
       redirect_to user_path(@rqstuser), notice: 'Friend request sent'
     else

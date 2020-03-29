@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
 
     it 'friend request sent' do
       @testuser1.friendships.build(rqstuser: @testuser2, status: false).save
-      expect(@testuser1.pending_friends).to_not be(nil)
+      expect(@testuser1.friend_requests).to_not be(nil)
     end
   end
 
@@ -38,7 +38,6 @@ RSpec.describe User, type: :model do
     it { should have_many(:comments) }
     it { should have_many(:likes) }
     it { should have_many(:friends) }
-    it { should have_many(:pending_friends) }
   end
 
   context 'Validations' do
