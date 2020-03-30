@@ -1,1 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+2:400,700&display=swap');
+/*font-family: 'Baloo 2', cursive;*/
 
+.custom-notice {
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #d74e09
+}
+
+.test-bg {
+  background-color: #eee;
+}
+
+.sign-in-image {
+  height: 600px;
+  width: 100%;
+  background: url("signinimg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sign-in-form {
+  text-align: center;
+}
+
+.header-title {
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  font-size: 2.5em;
+  font-weight: bolder;
+  color: #d74e09
+}
+
+.custom-alert {
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #6e0e0a
+}
