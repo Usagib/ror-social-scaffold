@@ -10,49 +10,21 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  has_many :friendships, dependent: :delete_all
+  has_many :friendships, foreign_key: 'user_id', dependent: :delete_all
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'rqstuser_id', dependent: :delete_all
 
+  has_many :friends, -> { where(friendships: { status: true }) }, through: :friendships, source: :rqstuser
+  scope :all_but, ->(user) { where.not(id: user) }
   # Methods
-
-  # Return the user's friends list
-  def friends
-    friends_arr = friendships.map do |fr|
-      fr.rqstuser if fr.status
-    end
-
-    friends_arr += inverse_friendships.map do |fr|
-      fr.user if fr.status
-    end
-
-    friends_arr
-  end
-
-  # shows users which the current users had send friend requests
-  def pending_friends
-    friendships.map { |fr| fr.rqstuser unless fr.status }.compact
-  end
 
   # shows if a user has a pending friend
   def pending_friend?(user)
-    pending_friends.include?(user)
+    friend_requests.include?(user)
   end
 
   # Users who have requested to be friends
   def friend_requests
     inverse_friendships.map { |fr| fr.user unless fr.status }.compact
-  end
-
-  # Confirmation methods for request receiving user
-  def confirm_friend(user)
-    friendship = inverse_friendships.find { |fr| fr.user == user }
-    friendship.status = true
-    friendship.save
-  end
-
-  def decline_friend(sender)
-    friendship = inverse_friendships.find { |fr| fr.user == sender }
-    friendship.destroy
   end
 
   # Checks for friendship

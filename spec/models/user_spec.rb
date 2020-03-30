@@ -14,25 +14,20 @@ RSpec.describe User, type: :model do
 
     it 'friend request sent' do
       @testuser1.friendships.build(rqstuser: @testuser2, status: false).save
-      expect(@testuser1.pending_friends).to_not be(nil)
+      expect(@testuser1.friend_requests).to_not be(nil)
+    end
+  end
+
+  context 'User content interaction' do
+    it 'can create posts' do
+      @testuser1.posts.build(content: 'Lorem ipsum dolor asimet').save
+      expect(@testuser2.posts).to_not be(nil)
     end
 
-    it 'accept friend request' do
-      @testuser1.friendships.build(rqstuser: @testuser2, status: false).save
-      @testuser2.confirm_friend(@testuser1)
-      expect(@testuser1.friends).to_not be(nil)
-    end
-
-    it 'friend request gets accepted' do
-      @testuser1.friendships.build(rqstuser: @testuser2).save
-      @testuser2.confirm_friend(@testuser1)
-      expect(@testuser2.friends.find(@testuser1)).to be_truthy
-    end
-
-    it 'friend request gets rejected' do
-      @testuser1.friendships.build(rqstuser: @testuser2).save
-      @testuser2.decline_friend(@testuser1)
-      expect(@testuser2.friend?(@testuser1)).to be_falsey
+    it 'can like posts' do
+      @testuser1.posts.build(content: 'Lorem ipsum dolor asimet').save
+      @testuser1.likes.create(post_id: 1)
+      expect(@testuser1.likes.first.user_id).to be_kind_of(Integer)
     end
   end
 
@@ -42,6 +37,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:posts) }
     it { should have_many(:comments) }
     it { should have_many(:likes) }
+    it { should have_many(:friends) }
   end
 
   context 'Validations' do

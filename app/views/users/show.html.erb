@@ -1,11 +1,10 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-  <%= friend_btn_show %>
+  <%= friend_btn_show if @user != current_user %>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
       <%= render @posts %>
     </ul>
   </article>
-  <%= debug(params) %>
 </section>
