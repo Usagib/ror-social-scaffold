@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+2:400,700&display=swap');
 /*font-family: 'Baloo 2', cursive;*/
 body {
-  padding-top: 100px;
+  padding-top: 120px;
   background: linear-gradient(184deg, rgba(242,187,5,1) 0%, rgba(216,78,9,1) 50%, rgba(215,78,9,1) 100%);
 }
 
@@ -10,7 +10,8 @@ body {
   font-family: 'Baloo 2', cursive;
   font-size: 1.5em;
   font-weight: 400;
-  color: #d74e09
+  color: #d74e09;
+  position: absolute;
 }
 
 .sign-up-banner {
@@ -55,8 +56,13 @@ body {
   background-size: cover;
 }
 
-.sign-in-form {
+.form-center-align {
   text-align: center;
+}
+
+.nav-link {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.5rem;
 }
 
 .header-title {
@@ -95,5 +101,5 @@ body {
   font-family: 'Baloo 2', cursive;
   font-size: 1.5em;
   font-weight: 400;
-  color: #6e0e0a
+  color: #6e0e0a;
 }
