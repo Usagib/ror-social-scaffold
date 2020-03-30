@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+2:400,700&display=swap');
 /*font-family: 'Baloo 2', cursive;*/
 body {
+  padding-top: 100px;
   background: linear-gradient(184deg, rgba(242,187,5,1) 0%, rgba(216,78,9,1) 50%, rgba(215,78,9,1) 100%);
 }
 
@@ -10,6 +11,14 @@ body {
   font-size: 1.5em;
   font-weight: 400;
   color: #d74e09
+}
+
+.sign-up-banner {
+  background: url("signupbanner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
 }
 
 .custom-btn {
@@ -32,6 +41,15 @@ body {
   height: 600px;
   width: 100%;
   background: url("signinimg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sign-up-image {
+  height: 600px;
+  width: 100%;
+  background: url("signupimg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
