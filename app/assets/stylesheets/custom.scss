@@ -5,6 +5,11 @@ body {
   background: linear-gradient(184deg, rgba(242,187,5,1) 0%, rgba(216,78,9,1) 50%, rgba(215,78,9,1) 100%);
 }
 
+a {
+  text-decoration: none;
+  color: #062447;
+}
+
 .custom-notice {
   text-align: center;
   font-family: 'Baloo 2', cursive;
@@ -27,6 +32,14 @@ body {
   color: white;
   &:hover {
     background-color: #d74e09ff;
+  }
+}
+
+.custom-btn-2 {
+  background-color: #06244788;
+  color: white;
+  &:hover {
+    background-color: #062447ff;
   }
 }
 

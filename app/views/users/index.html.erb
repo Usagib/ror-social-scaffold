@@ -1,13 +1,19 @@
-<section class="users-section">
-  <ul class="users-list">
+
+<div class="container mt-5 mb-5">
+  <div class="row">
     <% @users.each do |user| %>
-      <li>
-        Name: <%= user.name %>
-        <span class="profile-link">
+    <div class="col-lg-4 mt-3 mb-3">
+      <span class= "header-title-2"><%= user.name %></span>
+      <br>
+        <button type="button" class="btn btn-sm custom-btn">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-        </span>
-        <%= friend_btn_show(user.id) %>
-      </li>
+        </button>
+      <br>
+      <button type="button" class="btn btn-md custom-btn-2 mt-1">
+          <%= friend_btn_show(user.id) %>
+      </button>
+
+    </div>
     <% end %>
-  </ul>
-</section>
+  </div>
+</div>

@@ -1,18 +1,20 @@
-<section class="users-section">
-  <h1>Friend Requests</h1>
-  <ul class="users-list">
-    <% @friend_requests.each do |friendship| %>
-      <li>
-      <% unless friendship.status  %>
-        <h1 class='usertitle'><%= "#{ friendship.user.name} wants to connect with you" %></h1>
-        <br>
-        <br>
-        <%= confirm_btn friendship %>
-        <br>
-        <br>
-        <%= decline_btn friendship %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h1 class="header-title"> Friend Requests </h1>
+    </div>
+    <div class="col-lg-8">
+      <% @friend_requests.each do |friendship| %>
+        <% unless friendship.status  %>
+          <h1 class='subtitle'><%= "#{ friendship.user.name} wants to connect with you" %></h1>
+          <button type="button" class="btn btn-md custom-btn-2">
+            <%= confirm_btn friendship %>
+          </button>
+          <button type="button" class="btn btn-md custom-btn">
+            <%= decline_btn friendship %>
+          </button>
+        <% end %>
       <% end %>
-      </li>
-    <% end %>
-  </ul>
-</section>
+    </div>
+  </div>
+</div>
