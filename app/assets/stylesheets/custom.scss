@@ -73,12 +73,46 @@ body {
   color: #d74e09
 }
 
+.header-title-2 {
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  font-size: 2em;
+  font-weight: bolder;
+  color: #062447
+}
+
 .subtitle {
   text-align: left;
   font-family: 'Baloo 2', cursive;
   font-size: 1.5em;
   font-weight: 400;
   color: #062447
+}
+
+.post-content {
+  font-family: 'Baloo 2', cursive;
+  color: #062447;
+}
+
+.post-comments {
+  font-family: 'Baloo 2', cursive;
+  color: #d74e09;
+}
+
+.like-btn {
+  text-align: left;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.5em;
+  font-weight: bolder;
+  color: #062447;
+}
+
+.subtitle-2{
+  text-align: left;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #6e0e0a;
 }
 
 .subtitle-lil {
@@ -94,7 +128,6 @@ body {
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
-
 
 .custom-alert {
   text-align: center;
