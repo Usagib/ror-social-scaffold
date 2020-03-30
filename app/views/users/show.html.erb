@@ -1,10 +1,19 @@
-<section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
-  <%= friend_btn_show if @user != current_user %>
-  <article class="timeline">
-    <h3>Recent posts:</h3>
-    <ul class="posts">
+<div class="container rounded-pill mt-5 mb-5">
+  <div class="row">
+    <div class="col-lg-12">
+      <%= image_tag("postindexwelcomeimg.png", height: "50", class: "mr-3 mt-3 mb-3")%>
+      <span class="header-title"><%= "#{@user.name}" %></span>
+      <button type="button" class="btn btn-sm custom-btn ml-5">
+        <%= friend_btn_show if @user != current_user %>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container pt-5">
+  <div class="row">
+    <ul>
       <%= render @posts %>
     </ul>
-  </article>
-</section>
+  </div>
+</div>
+  
